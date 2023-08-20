@@ -148,6 +148,7 @@ const App = ({ signOut }) => {
                 src={nfbBrother.image}
                 alt={`visual aid for ${nfbBrother.lname}`}
                 style={{ width: 400 }}
+              />
             )}
             <Button variation="link" onClick={() => deleteNfbBrother(nfbBrother)}>
               Delete Brother
