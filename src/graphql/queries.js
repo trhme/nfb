@@ -42,10 +42,9 @@ export const getNfbBrother = /* GraphQL */ `
 export const listNfbBrothers = /* GraphQL */ `
   query ListNfbBrothers(
     $filter: ModelNfbBrotherFilterInput
-    $limit: Int
     $nextToken: String
   ) {
-    listNfbBrothers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listNfbBrothers(filter: $filter, limit: 1000, nextToken: $nextToken) {
       items {
         id
         email
