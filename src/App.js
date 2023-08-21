@@ -137,7 +137,7 @@ const App = ({ signOut }) => {
             alignItems="center"
           >
             <Text as="strong" fontWeight={700}>
-              {nfbBrother.id}
+              {nfbBrother.lname}
             </Text>
             <Text as="span">{nfbBrother.fname}</Text>
             <Text as="span">{nfbBrother.email}</Text>
