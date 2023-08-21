@@ -74,6 +74,7 @@ const App = ({ signOut }) => {
   return (
     <View className="App">
       <Heading level={1}>Navy Football Brotherhood</Heading>
+      <Button onClick={signOut}>Sign Out</Button>
       <View as="form" margin="3rem 0" onSubmit={createNfbBrother}>
         <Flex direction="row" justifyContent="center">
           <TextField
