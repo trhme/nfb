@@ -31,7 +31,7 @@ const App = ({ signOut }) => {
     await Promise.all(
       nfbBrothersFromAPI.map(async (nfbBrother) => {
         if (nfbBrother.image) {
-          const url = await Storage.get(nfbBrother.lname);
+          const url = await Storage.get(nfbBrother.id);
           nfbBrother.image = url;
         }
         return nfbBrother;
@@ -64,7 +64,7 @@ const App = ({ signOut }) => {
   async function deleteNfbBrother({ id }) {
     const newNfbBrothers = nfbBrothers.filter((nfbBrother) => nfbBrother.id !== id);
     setNfbBrothers(newNfbBrothers);
-    await Storage.remove(name);
+    await Storage.remove(id);
     await API.graphql({
       query: deleteNfbBrotherMutation,
       variables: { input: { id } },
@@ -137,7 +137,7 @@ const App = ({ signOut }) => {
             alignItems="center"
           >
             <Text as="strong" fontWeight={700}>
-              {nfbBrother.lname}
+              {nfbBrother.id}
             </Text>
             <Text as="span">{nfbBrother.fname}</Text>
             <Text as="span">{nfbBrother.email}</Text>
@@ -146,7 +146,7 @@ const App = ({ signOut }) => {
             {nfbBrother.image && (
               <Image
                 src={nfbBrother.image}
-                alt={`visual aid for ${nfbBrother.lname}`}
+                alt={`visual aid for ${nfbBrother.id}`}
                 style={{ width: 400 }}
               />
             )}
