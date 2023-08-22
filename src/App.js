@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { API, Storage } from "aws-amplify";
+import { API, Storage, Auth } from "aws-amplify";
 import {
   Button,
   Flex,
@@ -20,6 +20,8 @@ import {
 
 const App = ({ signOut }) => {
   const [nfbBrothers, setNfbBrothers] = useState([]);
+  //const acui = Auth.currentUserInfo()
+  //console.log(acui)
 
   useEffect(() => {
     fetchNfbBrothers();
@@ -27,6 +29,8 @@ const App = ({ signOut }) => {
 
   async function fetchNfbBrothers() {
     const apiData = await API.graphql({ query: listNfbBrothers });
+    //const attributes = await Auth.currentUserInfo();
+    //console.log('attributes', attributes);
     const nfbBrothersFromAPI = apiData.data.listNfbBrothers.items;
     await Promise.all(
       nfbBrothersFromAPI.map(async (nfbBrother) => {
@@ -73,8 +77,11 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Heading level={1}>Navy Football Brotherhood</Heading>
-      <Button onClick={signOut}>Sign Out</Button>
+      <Flex direction="row" justifyContent="center">
+        <Heading level={1}>Navy Football Brotherhood</Heading>
+        <Text as="span">signed in as </Text>
+        <Button onClick={signOut}>Sign Out</Button>
+      </Flex>
       <View as="form" margin="3rem 0" onSubmit={createNfbBrother}>
         <Flex direction="row" justifyContent="center">
           <TextField
